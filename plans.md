@@ -35,7 +35,7 @@
 
 2. DONE Generate boilerplate with express-generator (which will come with .pug views)
 
-3. Create new Mongo project and database for development using the web-interface as demonstrated in the tutorial
+3. DONE Create new Mongo project and database for development using the web-interface as demonstrated in the tutorial
 
 4. Set up your database schemas and models in the project directory
 
