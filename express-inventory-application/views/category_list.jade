@@ -6,4 +6,6 @@ block content
     ul 
         each categoryDoc in categoryDocArray 
             li 
-                a(href=`/catalog/category/${categoryDoc.url}`) #{categoryDoc.name}
+                a(href=`${categoryDoc.url}`) #{categoryDoc.name}
+
+    a(href="category/create") Create
