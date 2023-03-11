@@ -37,7 +37,7 @@
 
 3. DONE Create new Mongo project and database for development using the web-interface as demonstrated in the tutorial
 
-4. Set up your database schemas and models in the project directory
+4. DONE Set up your database schemas and models in the project directory
 
 5. Download https://raw.githubusercontent.com/hamishwillee/express-locallibrary-tutorial/master/populatedb.js, edit it to match your project and use it to populate the development 
 database accordingly for testing
