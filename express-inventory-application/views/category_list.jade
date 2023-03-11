@@ -4,6 +4,6 @@ block content
     h1= title
 
     ul 
-        each categoryDoc in categoryArray 
+        each categoryDoc in categoryDocArray 
             li 
                 a(href=`/catalog/category/${categoryDoc.url}`) #{categoryDoc.name}

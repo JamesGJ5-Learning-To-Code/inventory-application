@@ -28,17 +28,25 @@ exports.index = (req, res) => {
 exports.category_list = (req, res, next) => {
     Category.find({}, "name")
         .sort({name: 1})
-    .then((categoryArray) => {
+    .then((categoryDocArray) => {
         res.render("category_list", {
             title: "Categories",
-            categoryArray,
+            categoryDocArray,
         })
     })
     .catch((err) => next(err));
 };
 
 exports.category_detail = (req, res, next) => {
-    res.send("TODO: implement category_detail controller");
+    // const categoryID = req.params.id;
+    // Promise.all(
+    //     [
+    //         Category.findById(categoryID)
+    //             .orFail(),
+    //         Item.find({ category: categoryID })
+    //     ]
+    // )
+    // .then([cate])
 }
 
 exports.category_create_get = (req, res, next) => {
