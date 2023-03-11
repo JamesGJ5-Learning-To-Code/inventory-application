@@ -26,7 +26,15 @@ exports.index = (req, res) => {
 };
 
 exports.category_list = (req, res, next) => {
-    res.send("TODO: implement category_list controller");
+    Category.find({}, "name")
+        .sort({name: 1})
+    .then((categoryArray) => {
+        res.render("category_list", {
+            title: "Categories",
+            categoryArray,
+        })
+    })
+    .catch((err) => next(err));
 };
 
 exports.category_detail = (req, res, next) => {
