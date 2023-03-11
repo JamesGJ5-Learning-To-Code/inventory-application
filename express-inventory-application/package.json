@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=express-inventory-application:* npm run devstart"
   },
   "dependencies": {
     "async": "^3.2.4",
@@ -15,5 +17,8 @@
     "jade": "~1.11.0",
     "mongoose": "^6.9.0",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
