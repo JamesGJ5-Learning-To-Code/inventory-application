@@ -4,7 +4,25 @@ const Item = require("../models/item");
 const { body, validationResult } = require("express-validator");
 
 exports.index = (req, res) => {
-    res.send("TODO: implement index controller");
+    Promise.all(
+        [
+            Category.countDocuments({}),
+            Item.countDocuments({}),
+        ]
+    )
+    .then(([categoryCount, itemCount]) => {
+        res.render("index", {
+            title: "Catalog Home",
+            categoryCount,
+            itemCount,
+        });
+    })
+    .catch((err) => {
+        res.render("index", {
+            title: "Catalog Home",
+            error: err,
+        });
+    });
 };
 
 exports.category_list = (req, res, next) => {
