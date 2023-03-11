@@ -38,15 +38,24 @@ exports.category_list = (req, res, next) => {
 };
 
 exports.category_detail = (req, res, next) => {
-    // const categoryID = req.params.id;
-    // Promise.all(
-    //     [
-    //         Category.findById(categoryID)
-    //             .orFail(),
-    //         Item.find({ category: categoryID })
-    //     ]
-    // )
-    // .then([cate])
+    const categoryID = req.params.id;
+    Promise.all(
+        [
+            Category.findById(categoryID)
+                .orFail(),
+            Item.find({
+                category: categoryID
+            }),
+        ]
+    )
+    .then(([categoryDoc, itemDocArray]) => {
+        res.render("category_detail", {
+            title: categoryDoc.name,
+            categoryDoc,
+            itemDocArray,
+        })
+    })
+    .catch((err) => next(err));
 }
 
 exports.category_create_get = (req, res, next) => {
