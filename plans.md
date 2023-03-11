@@ -33,7 +33,7 @@
         2. Virtuals:
             1. URL (including Category's ID)
 
-2. Generate boilerplate with express-generator (which will come with .pug views)
+2. DONE Generate boilerplate with express-generator (which will come with .pug views)
 
 3. Create new Mongo project and database for development using the web-interface as demonstrated in the tutorial
 
