@@ -14,14 +14,14 @@
     3. Update (e.g. of item or category via post from form)
     4. Delete (e.g. of item or category via post from form)
 
-1. Write down all models needed and fields that should go in them (maybe draw a UML association diagram like the one at https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#designing_the_locallibrary_models):
+1. DONE Write down all models needed and fields that should go in them (maybe draw a UML association diagram like the one at https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#designing_the_locallibrary_models):
 
     1. Item model should at least have:
         1. Fields
             1. name
             2. description
             3. category (reference to a Category object via its ID)
-            4. price
+            4. price (see accepted answer at https://stackoverflow.com/questions/13304129/how-should-i-store-a-price-in-mongoose for help with decimal handling)
             5. number-in-stock
         2. Virtuals:
             1. URL (including Item's ID)
