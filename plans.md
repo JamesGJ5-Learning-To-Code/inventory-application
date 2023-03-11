@@ -22,7 +22,7 @@
             2. description
             3. category (reference to a Category object via its ID)
             4. price (see accepted answer at https://stackoverflow.com/questions/13304129/how-should-i-store-a-price-in-mongoose for help with decimal handling)
-            5. number-in-stock
+            5. numberInStock
         2. Virtuals:
             1. URL (including Item's ID)
 
