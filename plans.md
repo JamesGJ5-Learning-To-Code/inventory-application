@@ -39,8 +39,7 @@
 
 4. DONE Set up your database schemas and models in the project directory
 
-5. Download https://raw.githubusercontent.com/hamishwillee/express-locallibrary-tutorial/master/populatedb.js, edit it to match your project and use it to populate the development 
-database accordingly for testing
+5. Download https://raw.githubusercontent.com/JamesGJ5/mdn-local-library-project/main/express-locallibrary-tutorial/populatedb.js?token=GHSAT0AAAAAAB5OR34BVZ6BVVFBUWF6VJD2ZAMVWJQ, edit it to match your project and use it to populate the development database accordingly for testing
 
 6. Set up routes that will be needed
 
