@@ -41,7 +41,7 @@
 
 5. DONE Download https://raw.githubusercontent.com/JamesGJ5/mdn-local-library-project/main/express-locallibrary-tutorial/populatedb.js?token=GHSAT0AAAAAAB5OR34BVZ6BVVFBUWF6VJD2ZAMVWJQ, edit it to match your project and use it to populate the development database accordingly for testing
 
-6. Set up routes that will be needed
+6. DONE Set up routes that will be needed
 
 7. Set up the controllers that will be needed
 
