@@ -1,0 +1,10 @@
+extends layout 
+
+block content 
+    h1= title
+    p= categoryDoc.description
+
+    ul 
+        each itemDoc in itemDocArray 
+            p
+                a(href=`${itemDoc.url}`) !{itemDoc.name}
