@@ -29,7 +29,17 @@ exports.item_detail = (req, res, next) => {
 }
 
 exports.item_create_get = (req, res, next) => {
-    res.send("TODO: implement item_create_get controller");
+    // TODO: consider daisy-chaining an orFail() method call to the find() call in case 
+    // no categories are found, because then, Item won't even be able to be created if 
+    // rendered form is submitted
+    Category.find({}, "name")
+    .then((foundCategoryDocArray) => {
+        res.render("item_form", {
+            title: "Create Item",
+            categoryDocArray: foundCategoryDocArray
+        });
+    })
+    .catch((err) => next(err));
 };
 
 exports.item_create_post = [
