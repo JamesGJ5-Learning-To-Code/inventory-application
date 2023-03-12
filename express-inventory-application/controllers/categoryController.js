@@ -105,20 +105,21 @@ exports.category_create_post = [
 ];
 
 exports.category_delete_get = (req, res, next) => {
-    // Promise.all(
-    //     [
-    //         Category.findById(req.params.id)
-    //             .orFail(),
-    //         Item.find({ category: req.params.id })
-    //     ]
-    // )
-    // .then(([foundCategoryDoc, foundItemArray]) => {
-    //     res.render("category_delete", {
-    //         title: "Delete Category",
-    //         categoryDoc
-    //     })
-    // })
-    // .catch((err) => next(err));
+    Promise.all(
+        [
+            Category.findById(req.params.id)
+                .orFail(),
+            Item.find({ category: req.params.id }),
+        ]
+    )
+    .then(([foundCategoryDoc, foundItemDocArray]) => {
+        res.render("category_delete", {
+            title: "Delete Category",
+            categoryDoc: foundCategoryDoc,
+            itemDocArray: foundItemDocArray,
+        });
+    })
+    .catch((err) => next(err));
 };
 
 exports.category_delete_post = (req, res, next) => {
