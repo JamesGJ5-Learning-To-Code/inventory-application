@@ -148,7 +148,15 @@ exports.category_delete_post = (req, res, next) => {
 };
 
 exports.category_update_get = (req, res, next) => {
-    res.send("TODO: implement category_update_get controller");
+    Category.findById(req.params.id)
+        .orFail()
+    .then((foundCategoryDoc) => {
+        res.render("category_form", {
+            title: "Update Category",
+            newCategoryDoc: foundCategoryDoc,
+        });
+    })
+    .catch((err) => next(err));
 };
 
 exports.category_update_post = [
