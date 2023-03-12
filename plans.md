@@ -52,5 +52,7 @@
 9. Write views containing forms which can both create (starting with blank fields) and update (starting with fields populated by data of object to be updated):
     1. One for Category
     2. One for Item
+    
+10. Switch to pug if convenient (as done in MDN tutorial)
 
-10. Decide whether or not to do the "EXTRA CREDIT" tasks
+11. Decide whether or not to do the "EXTRA CREDIT" tasks
