@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    form(action="", method="POST") 
+        div 
+            label(for="categoryNameInput") *Category Name: 
+            input(
+                id="categoryNameInput"
+                type="text"
+                name="categoryName"
+                required
+            )
+        div
+            label(for="categoryDescriptionInput") *Category Description: 
+            textarea(
+                id="categoryDescriptionInput"
+                type="text"
+                name="categoryDescription"
+                required='true'
+            )
+        button Submit
