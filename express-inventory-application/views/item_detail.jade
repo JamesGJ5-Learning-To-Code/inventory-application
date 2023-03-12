@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+    h1= title
+    p= itemDoc.description
+    p Category: #[a(href=itemDoc.category.url) !{itemDoc.category.name}]
+    p Price: £!{itemDoc.price}
+    p Number in stock: !{itemDoc.number_in_stock}
+
+    p
+        a(href=itemDoc.url + "/delete") Delete category
+    p
+        a(href=itemDoc.url + "/update") Update category
