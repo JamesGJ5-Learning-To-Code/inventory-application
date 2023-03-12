@@ -1,0 +1,72 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    form(action="", method="POST") 
+
+        div 
+            label(for="itemNameInput") *Item Name: 
+            input(
+                id="itemNameInput"
+                type="text"
+                name="itemName"
+                required
+                value=newItemDoc ? newItemDoc.name : ""
+            )
+
+        div
+            label(for="itemDescriptionInput") *Item Description: 
+            textarea(
+                id="itemDescriptionInput"
+                type="text"
+                name="itemDescription"
+                required
+            )= newItemDoc ? newItemDoc.description : ""
+
+        div 
+            label(for="itemCategoryNameSelect") *Category:
+            select(
+                id="itemCategoryNameSelect"
+                name="itemCategoryName"
+                required 
+            )
+                - categoryDocArray.sort((a, b) => {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;})
+                for categoryDoc in categoryDocArray 
+                    option(
+                        value=categoryDoc._id
+                        selected=(
+                            categoryDoc._id.toString() === selectedCategoryDocId ? true : false
+                        )
+                    ) #{categoryDoc.name}
+
+        div 
+            label(for="itemPriceInput") *Item Price (£): 
+            //- TODO: consider setting min below
+            input(
+                id="itemPriceInput"
+                type="number"
+                name="itemPrice"
+                required
+                step="0.01"
+                value=newItemDoc ? newItemDoc.price : "0.00"
+            )
+
+        div 
+            label(for="numberInStockInput") *Number in Stock: 
+            input(
+                id="numberInStockInput"
+                type="number"
+                name="numberInStock"
+                required
+                min="0"
+                step="1"
+                value=newItemDoc ? newItemDoc.number_in_stock : "0"
+            )
+            
+        button Submit
+
+    if errorsArray 
+        ul
+            each error in errorsArray 
+                li= error.msg
