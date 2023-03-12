@@ -65,6 +65,8 @@ exports.category_create_get = (req, res, next) => {
 };
 
 exports.category_create_post = [
+    // TODO: consider characters that shouldn't be escaped, and whether it would be safe 
+    // not to escape them. E.g. the apostrophe.
     body("categoryName", "Category name required")
         .trim()
         .isLength({ min: 1 })
@@ -158,29 +160,35 @@ exports.category_update_get = (req, res, next) => {
 };
 
 exports.category_update_post = [
-    // body("categoryName", "Category name required")
-    //     .trim()
-    //     .isLength({ min: 1 })
-    //     .escape(),
-    // body("categoryDescription", "Category description required")
-    //     .trim()
-    //     .isLength({ min: 1 })
-    //     .escape(),
-    // (req, res, next) => {
-    //     const errorsResultObject = validationResult(req);
-    //     const newCategoryDoc = new Category({
-    //         name: req.body.categoryName,
-    //         description: req.body.categoryDescription,
-    //         _id: req.params.id,
-    //     });
-    //     if (!errorsResultObject.isEmpty()) {
-    //         res.render("category_form", {
-    //             title: "Update Category",
-    //             newCategoryDoc,
-    //             errorsArray: errorsResultObject.array(),
-    //         });
-    //         return;
-    //     }
-
-    // }
+    // TODO: consider characters that shouldn't be escaped, and whether it would be safe 
+    // not to escape them. E.g. the apostrophe.
+    body("categoryName", "Category name required")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("categoryDescription", "Category description required")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    (req, res, next) => {
+        const errorsResultObject = validationResult(req);
+        const newCategoryDoc = new Category({
+            name: req.body.categoryName,
+            description: req.body.categoryDescription,
+            _id: req.params.id,
+        });
+        if (!errorsResultObject.isEmpty()) {
+            res.render("category_form", {
+                title: "Update Category",
+                newCategoryDoc,
+                errorsArray: errorsResultObject.array(),
+            });
+            return;
+        }
+        Category.findByIdAndUpdate(req.params.id, newCategoryDoc, {})
+        .then((savedCategoryDoc) => {
+            res.redirect(savedCategoryDoc.url);
+        })
+        .catch((err) => next(err));
+    }
 ];
