@@ -6,6 +6,8 @@ block content
     ul 
         each itemDoc in itemDocArray 
             li 
+                //- TODO: denote category next to item in case items of different 
+                //- categories have the same name
                 a(href=`${itemDoc.url}`) #{itemDoc.name}
 
     a(href="item/create") Create
