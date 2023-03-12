@@ -99,7 +99,17 @@ exports.item_create_post = [
 ];
 
 exports.item_delete_get = (req, res, next) => {
-    res.send("TODO: implement item_delete_get controller");
+    Item.findById(req.params.id)
+    .then((foundItemDoc) => {
+        if (foundItemDoc === null) {
+            return res.redirect("/catalog/items");
+        }
+        res.render("item_delete", {
+            title: "Delete Item",
+            itemDoc: foundItemDoc,
+        });
+    })
+    .catch((err) => next(err));
 };
 
 exports.item_delete_post = (req, res, next) => {
