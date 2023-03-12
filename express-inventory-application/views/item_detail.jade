@@ -5,7 +5,7 @@ block content
     p= itemDoc.description
     p Category: #[a(href=itemDoc.category.url) !{itemDoc.category.name}]
     p Price: £!{itemDoc.price}
-    p Number in stock: !{itemDoc.number_in_stock}
+    p Number in stock: !{itemDoc.numberInStock}
 
     p
         a(href=itemDoc.url + "/delete") Delete category
