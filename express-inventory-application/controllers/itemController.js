@@ -4,7 +4,15 @@ const Category = require("../models/category");
 const { body, validationResult } = require("express-validator");
 
 exports.item_list = (req, res, next) => {
-    res.send("TODO: implement item_list controller");
+    Item.find({}, "name")
+        .sort({ name: 1 })
+    .then((foundItemDocArray) => {
+        res.render("item_list", {
+            title: "Items",
+            itemDocArray: foundItemDocArray,
+        });
+    })
+    .catch((err) => next(err));
 };
 
 exports.item_detail = (req, res, next) => {
