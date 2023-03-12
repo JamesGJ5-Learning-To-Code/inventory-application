@@ -65,7 +65,43 @@ exports.category_create_get = (req, res, next) => {
 };
 
 exports.category_create_post = [
-    (req, res, next) => res.send("TODO: implement category_create_post controller"),
+    body("categoryName", "Category name required")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("categoryDescription", "Category description required")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    (req, res, next) => {
+        const errorsResultObject = validationResult(req);
+        const newCategoryDoc = new Category({
+            name: req.body.categoryName,
+            description: req.body.categoryDescription
+        });
+        if (!errorsResultObject.isEmpty()) {
+            res.render("category_form", {
+                title: "Create Category",
+                newCategoryDoc,
+                errorsArray: errorsResultObject.array(),
+            });
+            return;
+        }
+        else {
+            Category.findOne({ name: newCategoryDoc.name })
+            .then((foundCategoryDoc) => {
+                if (foundCategoryDoc) {
+                    return res.redirect(foundCategoryDoc.url);
+                }
+                newCategoryDoc.save()
+                .then((savedCategoryDoc) => {
+                    res.redirect(savedCategoryDoc.url);
+                })
+                .catch((err) => next(err));
+            })
+            .catch((err) => next(err))
+        }
+    },
 ];
 
 exports.category_delete_get = (req, res, next) => {
