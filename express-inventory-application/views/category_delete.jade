@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    h1= title
+    h3 Category: !{categoryDoc.name}
+
+    if itemDocArray.length > 0
+        p Please delete the following items first:
+        ul 
+            for itemDoc in itemDocArray
+                li 
+                    a(href=itemDoc.url) !{itemDoc.name}
+
+    else 
+        form(action="" method="POST") 
+            input.form-control(
+                id="categoryDocId"
+                type="hidden"
+                name="categoryDocId"
+                required="true"
+                value=categoryDoc._id
+            )
+            button Delete
