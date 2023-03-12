@@ -72,7 +72,7 @@ function itemCreate(name, description, category, price, numberInStock, cb) {
 
 
 function createCategories(cb) {
-    async.parallel([
+    async.series([
         function(callback) {
           categoryCreate('Books', 'All sorts of books and manga and all that stuff.', callback);
         },
