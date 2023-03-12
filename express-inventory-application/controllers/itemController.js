@@ -113,7 +113,11 @@ exports.item_delete_get = (req, res, next) => {
 };
 
 exports.item_delete_post = (req, res, next) => {
-    res.send("TODO: implement item_delete_post controller");
+    Item.findByIdAndRemove(req.body.itemDocId)
+    .then(() => {
+        res.redirect("/catalog/items");
+    })
+    .catch((err) => next(err));
 };
 
 exports.item_update_get = (req, res, next) => {
