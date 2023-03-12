@@ -43,13 +43,13 @@
 
 6. DONE Set up routes that will be needed
 
-7. Set up the controllers that will be needed
+7. DONE Set up the controllers that will be needed
 
-8. Write all 'READ' views:
+8. DONE Write all 'READ' views:
     1. One to view Category
     2. One to view Item
 
-9. Write views containing forms which can both create (starting with blank fields) and update (starting with fields populated by data of object to be updated):
+9. DONE Write views containing forms which can both create (starting with blank fields) and update (starting with fields populated by data of object to be updated):
     1. One for Category
     2. One for Item
     
