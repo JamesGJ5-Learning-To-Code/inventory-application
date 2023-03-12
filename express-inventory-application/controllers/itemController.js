@@ -133,7 +133,7 @@ exports.item_update_get = (req, res, next) => {
     )
     .then(([foundItemDoc, foundCategoryDocArray]) => {
         res.render("item_form", {
-            title: "Delete Item",
+            title: "Update Item",
             categoryDocArray: foundCategoryDocArray,
             selectedCategoryDocId: foundItemDoc.category.toString(),
             newItemDoc: foundItemDoc,
@@ -143,5 +143,49 @@ exports.item_update_get = (req, res, next) => {
 };
 
 exports.item_update_post = [
-    (req, res, next) => res.send("TODO: implement item_update_post controller"),
+    // body("itemName", "Item name is required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .escape(),
+    // body("itemDescription", "Item description is required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .escape(),
+    // body("itemCategoryId", "Item category is required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .escape(),
+    // body("itemPrice", "Valid item price is required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .isDecimal()
+    //     .escape(),
+    // body("numberInStock", "Valid number in stock is required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .isDecimal()
+    //     .escape(),
+    // (req, res, next) => {
+    //     const errorsResultObject = validationResult(req);
+    //     const itemPrice = parseInt(req.body.itemPrice);
+    //     const numberInStock = parseInt(req.body.numberInStock);
+    //     const newItemDoc = new Item({
+    //         name: req.body.itemName,
+    //         description: req.body.itemDescription,
+    //         category: req.body.itemCategoryId,
+    //         price: itemPrice,
+    //         numberInStock: numberInStock,
+    //         _id: req.params.id,
+    //     });
+    //     if (!errorsResultObject.isEmpty()) {
+    //         Category.find({}, "name")
+    //         .then((foundCategoryDocArray) => {
+    //             res.render("item_form", {
+    //                 title: 
+    //             });
+    //         })
+    //         .catch((err) => next(err));
+    //         return;
+    //     }
+    // },
 ];
