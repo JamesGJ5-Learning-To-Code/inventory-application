@@ -87,20 +87,18 @@ exports.category_create_post = [
             });
             return;
         }
-        else {
-            Category.findOne({ name: newCategoryDoc.name })
-            .then((foundCategoryDoc) => {
-                if (foundCategoryDoc) {
-                    return res.redirect(foundCategoryDoc.url);
-                }
-                newCategoryDoc.save()
-                .then((savedCategoryDoc) => {
-                    res.redirect(savedCategoryDoc.url);
-                })
-                .catch((err) => next(err));
+        Category.findOne({ name: newCategoryDoc.name })
+        .then((foundCategoryDoc) => {
+            if (foundCategoryDoc) {
+                return res.redirect(foundCategoryDoc.url);
+            }
+            newCategoryDoc.save()
+            .then((savedCategoryDoc) => {
+                res.redirect(savedCategoryDoc.url);
             })
-            .catch((err) => next(err))
-        }
+            .catch((err) => next(err));
+        })
+        .catch((err) => next(err))
     },
 ];
 
@@ -160,5 +158,29 @@ exports.category_update_get = (req, res, next) => {
 };
 
 exports.category_update_post = [
-    (req, res, next) => res.send("TODO: implement category_update_post controller"),
+    // body("categoryName", "Category name required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .escape(),
+    // body("categoryDescription", "Category description required")
+    //     .trim()
+    //     .isLength({ min: 1 })
+    //     .escape(),
+    // (req, res, next) => {
+    //     const errorsResultObject = validationResult(req);
+    //     const newCategoryDoc = new Category({
+    //         name: req.body.categoryName,
+    //         description: req.body.categoryDescription,
+    //         _id: req.params.id,
+    //     });
+    //     if (!errorsResultObject.isEmpty()) {
+    //         res.render("category_form", {
+    //             title: "Update Category",
+    //             newCategoryDoc,
+    //             errorsArray: errorsResultObject.array(),
+    //         });
+    //         return;
+    //     }
+
+    // }
 ];
