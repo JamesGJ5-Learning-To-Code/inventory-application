@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    h1= title
+    h3 Item: !{itemDoc.name}
+
+    form(action="" method="POST") 
+        input(
+            id="itemDocId"
+            type="hidden"
+            name="itemDocId"
+            required="true"
+            value=itemDoc._id
+        )
+        button Delete
