@@ -16,7 +16,16 @@ exports.item_list = (req, res, next) => {
 };
 
 exports.item_detail = (req, res, next) => {
-    res.send("TODO: implement item_detail controller");
+    Item.findById(req.params.id)
+        .orFail()
+        .populate("category")
+    .then((foundItemDoc) => {
+        res.render("item_detail", {
+            title: foundItemDoc.name,
+            itemDoc: foundItemDoc,
+        });
+    })
+    .catch((err) => next(err));
 }
 
 exports.item_create_get = (req, res, next) => {
