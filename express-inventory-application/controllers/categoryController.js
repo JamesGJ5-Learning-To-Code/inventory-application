@@ -123,7 +123,28 @@ exports.category_delete_get = (req, res, next) => {
 };
 
 exports.category_delete_post = (req, res, next) => {
-    res.send("TODO: implement category_delete_post controller");
+    Promise.all(
+        [
+            Category.findById(req.body.categoryDocId),
+            Item.find({ category: req.body.categoryDocId }),
+        ]
+    )
+    .then(([foundCategoryDoc, foundItemDocArray]) => {
+        if (foundItemDocArray.length > 0) {
+            res.render("category_delete", {
+                title: "Delete Category",
+                categoryDoc: foundCategoryDoc,
+                itemDocArray: foundItemDocArray,
+            });
+            return;
+        }
+        Category.findByIdAndRemove(req.body.categoryDocId)
+        .then(() => {
+            res.redirect("/catalog/categories");
+        })
+        .catch((err) => next(err));
+    })
+    .catch((err) => next(err))
 };
 
 exports.category_update_get = (req, res, next) => {
