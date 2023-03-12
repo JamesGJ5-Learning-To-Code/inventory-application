@@ -59,7 +59,9 @@ exports.category_detail = (req, res, next) => {
 }
 
 exports.category_create_get = (req, res, next) => {
-    res.send("TODO: implement category_create_get controller");
+    res.render("category_form", {
+        title: "Create Category",
+    });
 };
 
 exports.category_create_post = [
