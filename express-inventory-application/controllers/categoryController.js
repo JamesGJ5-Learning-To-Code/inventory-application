@@ -28,10 +28,10 @@ exports.index = (req, res) => {
 exports.category_list = (req, res, next) => {
     Category.find({}, "name")
         .sort({name: 1})
-    .then((categoryDocArray) => {
+    .then((foundCategoryDocArray) => {
         res.render("category_list", {
             title: "Categories",
-            categoryDocArray,
+            categoryDocArray: foundCategoryDocArray,
         })
     })
     .catch((err) => next(err));
@@ -48,11 +48,11 @@ exports.category_detail = (req, res, next) => {
             }),
         ]
     )
-    .then(([categoryDoc, itemDocArray]) => {
+    .then(([foundCategoryDoc, foundItemDocArray]) => {
         res.render("category_detail", {
-            title: categoryDoc.name,
-            categoryDoc,
-            itemDocArray,
+            title: foundCategoryDoc.name,
+            categoryDoc: foundCategoryDoc,
+            itemDocArray: foundItemDocArray,
         })
     })
     .catch((err) => next(err));
@@ -105,7 +105,20 @@ exports.category_create_post = [
 ];
 
 exports.category_delete_get = (req, res, next) => {
-    res.send("TODO: implement category_delete_get controller");
+    // Promise.all(
+    //     [
+    //         Category.findById(req.params.id)
+    //             .orFail(),
+    //         Item.find({ category: req.params.id })
+    //     ]
+    // )
+    // .then(([foundCategoryDoc, foundItemArray]) => {
+    //     res.render("category_delete", {
+    //         title: "Delete Category",
+    //         categoryDoc
+    //     })
+    // })
+    // .catch((err) => next(err));
 };
 
 exports.category_delete_post = (req, res, next) => {
