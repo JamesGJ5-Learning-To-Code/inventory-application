@@ -55,4 +55,4 @@
     
 10. Switch to pug if convenient (as done in MDN tutorial)
 
-11. Decide whether or not to do the "EXTRA CREDIT" tasks
+11. DONE Decide whether or not to do the "EXTRA CREDIT" tasks
