@@ -121,7 +121,25 @@ exports.item_delete_post = (req, res, next) => {
 };
 
 exports.item_update_get = (req, res, next) => {
-    res.send("TODO: implement item_update_get controller");
+    // TODO: consider daisy-chaining an orFail() method call to the find() call in case 
+    // no categories are found, because then, Item won't even be able to be created if 
+    // rendered form is submitted
+    Promise.all(
+        [
+            Item.findById(req.params.id)
+                .orFail(),
+            Category.find({}, "name"),
+        ]
+    )
+    .then(([foundItemDoc, foundCategoryDocArray]) => {
+        res.render("item_form", {
+            title: "Delete Item",
+            categoryDocArray: foundCategoryDocArray,
+            selectedCategoryDocId: foundItemDoc.category.toString(),
+            newItemDoc: foundItemDoc,
+        });
+    })
+    .catch((err) => next(err));
 };
 
 exports.item_update_post = [
