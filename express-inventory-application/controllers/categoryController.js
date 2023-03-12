@@ -107,12 +107,14 @@ exports.category_create_post = [
 exports.category_delete_get = (req, res, next) => {
     Promise.all(
         [
-            Category.findById(req.params.id)
-                .orFail(),
+            Category.findById(req.params.id),
             Item.find({ category: req.params.id }),
         ]
     )
     .then(([foundCategoryDoc, foundItemDocArray]) => {
+        if (foundCategoryDoc == null) {
+            return res.redirect("/catalog/categories");
+        }
         res.render("category_delete", {
             title: "Delete Category",
             categoryDoc: foundCategoryDoc,
