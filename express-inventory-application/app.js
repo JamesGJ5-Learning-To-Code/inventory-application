@@ -12,6 +12,7 @@ var app = express();
 
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
+// NOTE: the database this connection string is for no longer exists so it's not sensitive information
 const mongoDB = "mongodb+srv://jamesgracajones:ySAsGB1a0BzP4J7l@development.a9nawoj.mongodb.net/?retryWrites=true&w=majority";
 
 main().catch(err => console.log(err));
